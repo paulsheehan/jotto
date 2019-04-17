@@ -30,13 +30,12 @@ export const guessWord = (guessedWord) => {
 }
 
 export const getSecretWord = () => {
-    // dispatches hardcoded word instead of GET responce
     return (dispatch) => {
         return axios.get('http://localhost:3030')
         .then(responce => {
             dispatch({
                 type: actionTypes.SET_SECRET_WORD,
-                payload: "party"
+                payload: responce.data
             });
         });
     }
