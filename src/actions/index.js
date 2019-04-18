@@ -33,10 +33,17 @@ export const getSecretWord = () => {
     return (dispatch) => {
         return axios.get('http://localhost:3030')
         .then(responce => {
-            dispatch({
-                type: actionTypes.SET_SECRET_WORD,
-                payload: responce.data
-            });
+            if(responce.data) {
+                dispatch({
+                    type: actionTypes.SET_SECRET_WORD,
+                    payload: responce.data
+                });
+            } else {
+                dispatch({
+                    type: actionTypes.SET_SECRET_WORD,
+                    payload: "party"
+                });
+            }
         });
     }
 }
